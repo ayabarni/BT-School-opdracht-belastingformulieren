@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "NSSans";
+  src: url("./assets/fonts/nssans-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NSSans";
+  src: url("./assets/fonts/nssans-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* color voor kopjes: #003082 */
+body{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    /* background-color: rgb(230, 230, 233); */
+    background-color: rgb(242, 242, 250);
+    font-family: "NSSans", Arial, sans-serif;
+    /* overflow: hidden; */
+
+}
+header{
+    width: 100%;
+    background-color: rgba(255, 201, 23, 1);
+    /* color: #003082; */
+    color: rgb(0, 48, 130);
+    padding: 1.5em;
+
+}
+header div{
+    /* width: 100%; */
+    height: auto;
+    /* margin-left: 1em;
+    margin-right: 1em; */
+    
+}
+
+
+main{
+    margin: 0 auto;
+    /* max-width: ; */
+    
+    max-width: 700px;
+    padding: 1em;
+}
+form{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    
+    border-radius: 1.5em;
+    padding: 1em;
+    /* box-shadow: 0px 1px 0.1em #a29797; */
+    box-shadow: inset 0 -.125rem 0 #e6e6e9;
+}
+fieldset{
+    border: none;
+}
+fieldset fieldset:nth-of-type(1), fieldset:nth-of-type(2){
+    border: none;
+    /* border-radius: 1em;
+    border-color: aqua; */
+}
+/* input[type="text"]{ 
+    color: rgb(166, 5, 2);
+    outline: none;
+} */
+/* input:invalid{
+    background-color: rgb(226, 233, 233);
+} */
+/* input:valid{
+    background-color: rgb(255, 60, 0);
+} */
+input{
+    width: 100%;
+    padding: 1em;
+    border:  2px solid rgb(244, 240, 240);
+    border-radius: 0.5em;
+    font-size: 16px; 
+    margin-bottom: 1.6em;
+}
+input:focus{
+    border: rgb(0, 48, 130);
+    
+
+}
+label{
+    display: block;
+    color: aquamarine;
+    color:  rgb(0, 48, 130);
+    margin-bottom: 0.5em;
+    font-weight: 500;
+}
+legend{
+    color: #003082;
+    font-weight: 700;
+    margin-bottom: 3em;
+}
+/* main form fieldset fieldset:nth-of-type(2) legend{
+    
+} */
+* { outline: 1px solid red; }
+/* *, *::before, *::after { box-sizing: border-box; } */
