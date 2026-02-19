@@ -56,3 +56,4 @@ Wat ik nog lastig vind is vooral de styling van formulieren — dat kost mij op 
 Plan:
 -Verder met de styling van het formulier
 -Extra uitleg/video’s zoeken over form styling, omdat ik de uitleg op MDN nog niet voldoende vond
+#Scool opdracht- Belastingformulieren
