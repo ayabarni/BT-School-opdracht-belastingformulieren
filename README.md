@@ -1,8 +1,6 @@
 # Dag 1
 Vandaag hadden we een workshop over HTML-inputs en formulier-validatie. Ik werkte samen met Jelle, maar ik heb vandaag vooral aan de HTML-structuur gewerkt.
 
-Belangrijkste inzicht (UX)
-
 Ik leerde dat input:invalid ervoor zorgt dat velden al vanaf het openen van de pagina als “fout” kunnen worden gestyled.
 Dat is slechte UX, omdat required-velden meteen invalid zijn, nog vóórdat de gebruiker iets heeft gedaan. Dit botst met het idee van validatie op het juiste moment (niet te vroeg).
 
