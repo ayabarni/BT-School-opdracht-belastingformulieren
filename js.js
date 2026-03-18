@@ -3,21 +3,18 @@ function setupReveal(radioName, targetId) {
     const block = document.getElementById(targetId);
 
     if (!block || radios.length === 0) return;
-    // اذا مافي بلوك ومافي راديو وقف تنفيذ، ليه؟ حتى ما يطلع ايرور 
 
-    // فتحنا فانكشن لانو كل مرة المستخدم يغير الاختبار بدنا نعيد التحقق
     function update() {
         const checked = document.querySelector(`input[name="${radioName}"]:checked`);
-        // هات الراديو ال حاليا تم اختيارو
 
         const show = checked && checked.value.toLowerCase() === "ja";
-        // يعني اذا في شي مختار وقيمته ja ف شو ترو غير هيك فالس
+       
 
         block.classList.toggle("hidden", !show);
-        //   إذا condition = true → ضيف class إذا false → شيل class
         const fields = block.querySelectorAll("input, select, textarea, button");
         fields.forEach(field => {
             field.disabled = !show;
+           
         }
 
         )
@@ -38,7 +35,6 @@ setupReveal("testament", "testamentBlock");
 
 
 // Vul 1 van de 3 in (2a)
-// const inputs = document.querySelectorAll(", #beconnummer_adviseur, #protocolnummer_notaris");
 const bsn = document.getElementById("bsn_rsin_gemachtigde");
 const beco = document.getElementById("beconnummer_adviseur");
 const protocol = document.getElementById("protocolnummer_notaris");
@@ -141,23 +137,6 @@ bsnNummer.addEventListener("blur", function () {
 });
 
 
-// form.addEventListener("submit", function (event) {
-//     if (
-//         voorletter.value.trim() === "" ||
-//         achternaam.value.trim() === "" ||
-//         overlijdensdatum.value === ""||
-//         bsnNummer.value.trim() === ""
-
-//     ) {
-//         event.preventDefault();
-//     }
-// });
-
-
-
-
-
-
 form.addEventListener("submit", function (event) {
     let valid = true;
 
@@ -191,6 +170,7 @@ form.addEventListener("submit", function (event) {
         bsnError.textContent = "Vul een BSN in."
         bsnNummer.classList.add("input-error");
         valid = false;
+
     } else if (!/^[0-9]{9}$/.test(bsnNummer.value.trim())) {
         bsnError.textContent = "* Vul een geldig  BSN in van 9 cijfers.";
         bsnNummer.classList.add("input-error");
@@ -202,10 +182,12 @@ form.addEventListener("submit", function (event) {
         bsn.classList.add("input-error");
         beco.classList.add("input-error");
         protocol.classList.add("input-error");
+
         valid = false;
     }
     if (!valid) {
         event.preventDefault();
+        
     }
 });
 

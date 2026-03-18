@@ -102,6 +102,13 @@ Later op de dag kreeg ik het werkend en kon ik de vragen verbergen wanneer de ge
 
 Over het algemeen vond ik dit een goede oefening, omdat het uiteindelijk werkte.
 
+Ik heb hier bewust gekozen voor de interaction pattern progressive disclosure.
+
+De reden hiervoor is dat sommige aanvullende vragen niet altijd relevant zijn. Als de gebruiker bijvoorbeeld „Nee“ kiest, zou het verwarrend en overbodig zijn om door te gaan met het tonen van aanvullende vragen die alleen van toepassing zijn op „Ja“.
+
+Door deze vragen standaard te verbergen, blijft het formulier overzichtelijker en minder rommelig. Daardoor ziet de gebruiker alleen de informatie die op dat moment relevant is. Vanuit het oogpunt van de gebruikerservaring vond ik dit logischer dan alles in één keer weer te geven.
+
+Technisch gezien heb ik dit probleem opgelost door een bepaald gedeelte zichtbaar of verborgen te maken op basis van de geselecteerde optie. 
 Volgende week wil ik verder werken aan:
 - validatie van de inputvelden  
 - mogelijk beginnen met het tweede interaction pattern, als ik daar genoeg tijd voor heb
@@ -175,7 +182,13 @@ Het resultaat was visueel een stuk beter en duidelijker.
     width: calc(100% + 2.5em);
 }
 ![alt text](<Scherm­afbeelding 2026-03-10 om 14.50.27.png>)
+In dit gedeelte heb ik voor een tweede patroon  gekozen: Vul 1 van de 3 in.     
 
+In dit gedeelte wordt de gebruiker gevraagd een van de drie velden in te vullen. Als alle drie de velden tegelijkertijd actief blijven, kan dit verwarring veroorzaken over wat er precies moet worden ingevuld.
+
+Daarom heb ik ervoor gekozen om de andere twee velden automatisch **uit te schakelen** zodra de gebruiker in een van de velden begint te typen. Dit maakt de keuze duidelijker en voorkomt dat de gebruiker per ongeluk meerdere opties invoert.
+
+Ik vond dit een logische oplossing, omdat het niet alleen het formulier duidelijker maakt, maar de gebruiker ook naar de juiste invoer leidt.
 
 ## Feedback voortgangsgesprek – 13 maart
 ![alt text](image-1.png)
@@ -250,3 +263,35 @@ Bijvoorbeeld bij de vragen: “Wat betekent ‘overleden’?” en “Wat is een
 
 
 Bron: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
+
+## Reflectie
+
+**Eindresultaat**
+
+In dit project heb ik een formulier ontwikkeld met de nadruk op gegevensvalidatie, structuur en gebruiksvriendelijkheid. Het formulier bevat verschillende soorten invoervelden met gegevensvalidatie via HTML (zoals verplichte velden, velden met een patroon en invoerpatronen). Daarnaast heb ik visuele feedback toegevoegd met behulp van CSS, waarbij de stijl van de velden verandert op basis van of de invoer correct is of niet. Ook heb ik extra validaties toegevoegd met behulp van JavaScript om foutmeldingen weer te geven en het validatieproces voor de gebruiker te verduidelijken. Het eindresultaat is een formulier dat niet alleen efficiënt werkt, maar ook gemakkelijk te begrijpen is.
+
+
+**Wat goed ging**
+
+Het opzetten van de basis van het formulier verliep soepel. Het valideren van gegevens met HTML leverde meteen een effectieve structuur op zonder dat er veel extra code geschreven hoefde te worden. Ook het toevoegen van visuele feedback met CSS was een succes en maakte het verschil tussen een juiste en een foutieve invoer duidelijk. Beetje bij beetje werd het formulier overzichtelijker en gestructureerder.
+
+**Wat moeilijk was**
+
+Het moeilijkste deel was het integreren van de gegevensvalidatie met HTML en JavaScript. Het gelijktijdig valideren van meerdere velden en het correct weergeven van foutmeldingen zorgde voor enkele problemen. Ik merkte ook dat een kleine fout in de logica (zoals het onjuist gebruiken van geneste voorwaardelijke constructies) er al snel voor zorgde dat de gegevensvalidatie niet meer correct werkte.
+
+**Waar ik trots op ben**
+
+Ik ben er trots op dat het prototype nu duidelijke feedback geeft en niet alleen afhankelijk is van de standaardmeldingen van de browser. De gebruiker krijgt zowel visuele als tekstuele feedback, wat de gebruikerservaring verbetert. Ik ben ook tevreden over mijn aanpak: eerst HTML en CSS gebruiken en daarna pas JavaScript toevoegen. Dit is de eerste keer dat ik met Formler werk en ik vind het echt een krachtige ervaring.
+
+**Mislukte pogingen**
+
+Ik heb verschillende manieren geprobeerd om foutmeldingen toe te voegen, zowel via HTML-attributen als via JavaScript. Sommige oplossingen waren niet compatibel of gaven geen duidelijke feedback. Ook gebruikte ik aanvankelijk een minder efficiënte structuur in JavaScript, die ik later heb aangepast.
+
+
+** Nieuwe inzichten (HTML/CSS/JS)**
+
+Ik heb geleerd dat HTML-validatie een solide basis vormt en dat je er veel mee kunt bereiken zonder JavaScript. CSS speelt een belangrijke rol bij het visueel weergeven van feedback. JavaScript is vooral nodig voor meer controle en flexibiliteit, maar moet op een logische en gestructureerde manier worden toegepast. 
+
+**Wat ik verder wil verkennen**
+
+Ik wil mijn vaardigheden verbeteren in het organiseren van gegevensvalidatie in JavaScript zonder herhaling, en in het consistent maken van foutmeldingen. Daarnaast wil ik meer oefenen met het verbeteren van de gebruikerservaring in formulieren.
