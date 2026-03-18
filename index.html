@@ -10,9 +10,9 @@
 
 <body>
     <header>
-        <div>Dit is een schoolproject
-            .Niet verbonden met de Belastingdienst en de Nederlandse Spoorwegen
-        </div>
+        <p>Dit is een schoolproject. Niet verbonden met de Belastingdienst en de Nederlandse Spoorwegen!!
+        </p>
+        <!--  هاي لازم تكون مع p بدل ديف -->
     </header>
 
 
@@ -21,33 +21,43 @@
         <!-- <h1>Gegevens van de overledene</h1> -->
         <!-- <p>Vul hier de gegevens in van de overledene.</p> -->
 
-        <form>
-            <!-- eerste filedset: Gegevens van de overledene -->
+        <form novalidate>
+            <!-- bron attribuut novalidate : https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form#novalidate -->
 
-            <fieldset>
+            <!-- eerste filedset: Gegevens van de overledene -->
+            <fieldset class="groep">
+
+
                 <legend>Vul hier de gegevens in van de overledene.</legend>
                 <fieldset>
                     <legend>Naam van de overledene</legend>
-                    <label for="voorletter">Voorletter(s)</label>
+                    <label for="voorletter">Voorletter(s)<span class="required">*</span></label>
                     <!-- <legend>1-Voorletter(s), tussenvoegsel(s) en achternaam</legend> -->
-                    <input type="text" name="voorletter" id="voorletter" autocomplete="additional-name" required>
+                    <input type="text" name="voorletter" id="voorletter" required>
+                    <span id="voorletter-error" class="error"></span>
                     <label for="tussenvoegsel">Tussenvoegsel(s)</label>
                     <input type="text" name="tussenvoegsel" id="tussenvoegsel">
-                    <label for="achternaam">Achternaam</label>
-                    <input type="text" name="achternaam" id="achternaam" autocomplete="family-name" required>
+                    <label for="achternaam">Achternaam<span class="required">*</span></label>
+                    <input type="text" name="achternaam" id="achternaam" required>
+                    <span id="achternaam-error" class="error"></span>
                 </fieldset>
 
                 <fieldset>
                     <legend>Identificatie en datum</legend>
-                    <label for="bsn">Bsn overledene</label>
-                    <input type="text" name="bsn" id="bsn" inputmode="numeric" pattern="^[0-9]{9}$" minlength="9"
+                    <label for="bsnNummer">Bsn overledene<span class="required">*</span></label>
+                    <input type="text" name="bsn" id="bsnNummer" inputmode="numeric" pattern="[0-9]{9}" minlength="9"
                         maxlength="9" required>
+                    <!-- bron "[0-9]{9}" : https://www.w3schools.com/jsref/jsref_regexp_not_0-9.asp -->
+                    <span id="bsn-error" class="error"></span>
                     <!-- voor attribut pattren:
                      https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/pattern
                       -->
-                    <label for="overlijdensdatum">Overlijdensdatum</label>
+                    <label for="overlijdensdatum">Overlijdensdatum<span class="required">*</span></label>
                     <input type="date" name="overlijdensdatum" id="overlijdensdatum" max="2026-02-17" required>
+                    <span id="datum-error" class="error"></span>
                 </fieldset>
+
+
             </fieldset>
 
 
@@ -59,7 +69,7 @@
                 <fieldset class="vraag">
                     <legend>Was de overledene getrouwd of had de overledene een
                         geregistreerde partner op het moment van overlijden?</legend>
-                    <label class="option"><input type="radio" name="getrouwd" id="getrouwd_nee" value="Nee"
+                    <label class="option"><input type="radio" name="getrouwd" id="getrouwd_nee" value="nee"
                             required />Nee</label>
                     <label class="option"><input type="radio" name="getrouwd" id="getrouwd_ja" value="ja"
                             required>Ja</label>
@@ -67,29 +77,37 @@
 
                 </fieldset>
 
-                <fieldset class="vraag">
-                    <legend>Hadden de overledene en diens echtgenoot of
-                        geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële
-                        akte?</legend>
-                    <label class="option"><input type="radio" name="voorwaarden" id="voorwaarden_nee" value="nee"
-                            required />Nee</label>
-                    <label class="option"><input type="radio" name="voorwaarden" id="voorwaarden_ja" value="ja"
-                            required>Ja</label>
-                </fieldset>
+                <div id="huwelijkBlock">
+                    <fieldset class="vraag">
+                        <legend>Hadden de overledene en diens echtgenoot of
+                            geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een
+                            notariële
+                            akte?</legend>
+                        <label class="option"><input type="radio" name="voorwaarden" id="voorwaarden_nee" value="nee"
+                                required />Nee</label>
+                        <label class="option"><input type="radio" name="voorwaarden" id="voorwaarden_ja" value="ja"
+                                required>Ja</label>
+                    </fieldset>
 
-                <fieldset class="vraag">
-                    <legend> Hadden de overledene en diens partner een finaal
-                        verrekenbeding?</legend>
-                    <label class="option"><input type="radio" name="verrekenbeding" value="nee" required />Nee</label>
-                    <label class="option"><input type="radio" name="verrekenbeding" value="ja" required>Ja</label>
+                    <div id="voorwaardenVervolg">
+                        <fieldset class="vraag">
+                            <legend> Hadden de overledene en diens partner een finaal
+                                verrekenbeding?</legend>
+                            <label class="option"><input type="radio" name="verrekenbeding" value="nee"
+                                    required />Nee</label>
+                            <label class="option"><input type="radio" name="verrekenbeding" value="ja"
+                                    required>Ja</label>
 
-                </fieldset>
-                 <div class="vraag">
-                        <label for="datum_voorwaarden" class="vraag-label">Datum huwelijkse of
-                            partnerschapsvoorwaarden</label>
-                        <input type="date" id="datum_voorwaarden" name="datum_voorwaarden">
+                        </fieldset>
+                        <div class="vraag" id="voorwaardenBlock">
+                            <label for="datum_voorwaarden" class="vraag-label">Datum huwelijkse of
+                                partnerschapsvoorwaarden</label>
+                            <input type="date" id="datum_voorwaarden" name="datum_voorwaarden">
+
+                        </div>
 
                     </div>
+                </div>
             </fieldset>
             <!-- derde fieldset: kinderen -->
             <fieldset class="groep">
@@ -99,24 +117,31 @@
                     <label class="option"><input type="radio" name="kinderen" value="nee" required />Nee</label>
                     <label class="option"><input type="radio" name="kinderen" value="ja" required />Ja</label>
                 </fieldset>
-                <fieldset class="vraag">
-                    <legend>Is 1 van deze kinderen eerder overleden dan de
-                        overledene voor wie u nu aangifte doet?
-                    </legend>
-                    <label class="option"><input type="radio" name="kind_eerder_overleden" value="nee"
-                            required>Nee</label>
-                    <label class="option"><input type="radio" name="kind_eerder_overleden" value="ja"
-                            required>Ja</label>
-                </fieldset>
-                <fieldset class="vraag">
-                    <legend>Had dit overleden kind zelf kinderen?</legend>
-                    <label class="option"><input type="radio" name="overleden_kind_kinderen" value="nee"
-                            required>Nee</label>
-                    <label class="option"><input type="radio" name="overleden_kind_kinderen" value="ja"
-                            required>Ja</label>
+                <div id="kinderenBlock">
+                    <fieldset class="vraag">
+                        <legend>Is 1 van deze kinderen eerder overleden dan de
+                            overledene voor wie u nu aangifte doet?
+                        </legend>
+                         <details>
+                        <summary> ⓘ Wat btekent eerder overleden</summary>
+                        <!-- bron summary: https://mark.ie/blog/hide-the-arrow-on-details-summary-element -->
+                        <p>Dit betekent dat het kind al overleden was voordat dat de overleden zelf overleed.</p>
+                    </details>
+                        <label class="option"><input type="radio" name="kind_eerder_overleden" value="nee"
+                                required>Nee</label>
+                        <label class="option"><input type="radio" name="kind_eerder_overleden" value="ja"
+                                required>Ja</label>
+                    </fieldset>
+                    <fieldset class="vraag" id="overledenKindBlock">
+                        <legend>Had dit overleden kind zelf kinderen?</legend>
+                        <label class="option"><input type="radio" name="overleden_kind_kinderen" value="nee"
+                                required>Nee</label>
+                        <label class="option"><input type="radio" name="overleden_kind_kinderen" value="ja"
+                                required>Ja</label>
 
 
-                </fieldset>
+                    </fieldset>
+                </div>
             </fieldset>
 
             <!-- vierde fieldset: testament -->
@@ -124,12 +149,16 @@
                 <legend>Testament</legend>
                 <fieldset class="vraag">
                     <legend>Had de overledene een testament?</legend>
-                    <label class="option"><input type="radio" name="testament" value="nee" required>Nee. Ga verder
-                        met de volgende vraag.</label>
-                    <label class="option"><input type="radio" name="testament" value="ja" required>Ja. Vul de
-                        gegevens in van de notaris en de datum van het testament.</label>
+                    <details>
+                        <summary> ⓘ Wat is een testament?</summary>
+                        <!-- bron summary: https://mark.ie/blog/hide-the-arrow-on-details-summary-element -->
+                        <p>Een testament is een officieel document dat bij een notaris wordt opgesteld.
+                            Hierin staat hoe de erfenis verdeeld moet worden.</p>
+                    </details>
+                    <label class="option"><input type="radio" name="testament" value="nee" required>Nee</label>
+                    <label class="option"><input type="radio" name="testament" value="ja" required>Ja</label>
                 </fieldset>
-                <fieldset class="details" aria-label="Gegevens notaris en testament">
+                <fieldset class="details" id="testamentBlock" aria-label="Gegevens notaris en testament">
                     <legend>Gegevens van de notaris en het testament</legend>
                     <label for="protocolnummer">Protocolnummer</label>
                     <input type="number" name="protocolnummer" id="protocolnummer" inputmode="numeric">
@@ -148,9 +177,9 @@
                         <input type="text" name="vestigingsplaats" id="vestigingsplaats">
 
 
-                        <label for="datum_testmaent">Datum van het testament of
+                        <label for="datum_testament">Datum van het testament of
                             van de laatste wijziging</label>
-                        <input type="date" name="datum_testmaent" id="datum_testmaent">
+                        <input type="date" name="datum_testament" id="datum_testament">
 
                     </fieldset>
 
@@ -158,14 +187,103 @@
 
 
 
- 
+
             </fieldset>
-            
+
+
+            <fieldset class="groep groep-gemachtigde">
+                <legend>Gegevens gemachtigde</legend>
+
+                <p><span>
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!DOCTYPE svg
+                            PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg
+                            version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px"
+                            viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
+                            <path d="M17.5,10.1L26.3,26H8.7L17.5,10.1 M17.5,8L7,27h21L17.5,8L17.5,8z" />
+                            <path
+                                d="M17.5,21L17.5,21c-0.3,0-0.5-0.2-0.5-0.5v-5c0-0.3,0.2-0.5,0.5-0.5l0,0c0.3,0,0.5,0.2,0.5,0.5v5C18,20.8,17.8,21,17.5,21z" />
+                            <rect x="17" y="19" width="1" height="2" />
+                            <circle cx="17.5" cy="23.2" r="0.8" />
+                            <style type="text/css">
+                                circle,
+                                ellipse,
+                                line,
+                                path,
+                                polygon,
+                                polyline,
+                                rect,
+                                text {
+                                    fill: #db0029;
+                                }
+                            </style>
+                        </svg>
+                    </span>
+
+                    Vul de gegevens van de gemachtigde in. De gemachtigde is degene die namens 1 of meerdere
+                    personen en/of instellingen aangifte doet.</p>
+
+                <p><span>
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!DOCTYPE svg
+                            PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg
+                            version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px"
+                            viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
+                            <path d="M17.5,10.1L26.3,26H8.7L17.5,10.1 M17.5,8L7,27h21L17.5,8L17.5,8z" />
+                            <path
+                                d="M17.5,21L17.5,21c-0.3,0-0.5-0.2-0.5-0.5v-5c0-0.3,0.2-0.5,0.5-0.5l0,0c0.3,0,0.5,0.2,0.5,0.5v5C18,20.8,17.8,21,17.5,21z" />
+                            <rect x="17" y="19" width="1" height="2" />
+                            <circle cx="17.5" cy="23.2" r="0.8" />
+                            <style type="text/css">
+                                circle,
+                                ellipse,
+                                line,
+                                path,
+                                polygon,
+                                polyline,
+                                rect,
+                                text {
+                                    fill: #db0029;
+                                }
+                            </style>
+                        </svg>
+                    </span>
+
+                    Het invullen van een telefoonnummer of e-mailadres is niet verplicht, maar wel
+                    handig. Dan kunnen wij u makkelijker vragen stellen of uitleg geven.
+                </p>
+                <!-- de warning svg(van ns wep):
+                 data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiICB3aWR0aD0iMzVweCIgaGVpZ2h0PSIzNXB4IiB2aWV3Qm94PSIwIDAgMzUgMzUiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDM1IDM1IiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMTcuNSwxMC4xTDI2LjMsMjZIOC43TDE3LjUsMTAuMSBNMTcuNSw4TDcsMjdoMjFMMTcuNSw4TDE3LjUsOHoiLz48cGF0aCBkPSJNMTcuNSwyMUwxNy41LDIxYy0wLjMsMC0wLjUtMC4yLTAuNS0wLjV2LTVjMC0wLjMsMC4yLTAuNSwwLjUtMC41bDAsMGMwLjMsMCwwLjUsMC4yLDAuNSwwLjV2NUMxOCwyMC44LDE3LjgsMjEsMTcuNSwyMXoiIC8+PHJlY3QgeD0iMTciIHk9IjE5IiB3aWR0aD0iMSIgaGVpZ2h0PSIyIi8+PGNpcmNsZSBjeD0iMTcuNSIgY3k9IjIzLjIiIHI9IjAuOCIvPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Y2lyY2xlLCBlbGxpcHNlLCBsaW5lLCBwYXRoLCBwb2x5Z29uLCBwb2x5bGluZSwgcmVjdCwgdGV4dCB7IGZpbGw6ICNkYjAwMjk7IH08L3N0eWxlPjwvc3ZnPg== -->
+                <fieldset>
+                    <legend>
+                        Vul 1 van de 3 in: het bsn of RSIN van de gemachtigde, het beconnummer van de
+                        adviseur of
+                        het
+                        protocolnummer van de notaris.
+                    </legend>
+                    <label for="bsn_rsin_gemachtigde">Bsn/RSIN gemachtigde</label>
+                    <input type="text" name="bsn/rsin gemachtigde" id="bsn_rsin_gemachtigde">
+                    <label for="beconnummer_adviseur">Beconnummer adviseur</label>
+                    <input type="text" name="beconnummer_adviseur" id="beconnummer_adviseur">
+                    <label for="protocolnummer_notaris">Protocolnummer notaris</label>
+                    <input type="text" name="protocolnummer_notaris" id="protocolnummer_notaris">
+
+                    <span id="gemachtigde-error" class="error"></span>
+                    <!-- <button type="submit">versturen</button> -->
+                </fieldset>
 
 
 
+            </fieldset>
+
+
+
+            <button type="submit">versturen</button>
         </form>
     </main>
+    <script src="./js.js"></script>
 </body>
 
 </html>
